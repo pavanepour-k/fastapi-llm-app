@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Login - {{ app_name }}{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <h1>Login</h1>
+        
+        <form hx-post="/api/v1/auth/token" 
+              hx-target="#login-status"
+              hx-on::after-request="handleLoginResponse(event)"
+              class="auth-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        
+        <div id="login-status" class="status-message"></div>
+        
+        <p class="auth-link">
+            Don't have an account? <a href="#" onclick="showRegisterForm()">Register here</a>
+        </p>
+    </div>
+</div>
+
+<script>
+function handleLoginResponse(event) {
+    if (event.detail.xhr.status === 200) {
+        const response = JSON.parse(event.detail.xhr.responseText);
+        localStorage.setItem('access_token', response.access_token);
+        window.location.href = '/';
+    }
+}
+
+function showRegisterForm() {
+    // Simple registration form toggle
+    alert('Registration form would be shown here. For demo, use any username/password.');
+}
+</script>
+{% endblock %}
