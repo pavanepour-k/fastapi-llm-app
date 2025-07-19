@@ -11,7 +11,7 @@ from pathlib import Path
 
 def run_command(command, description):
     """Run a shell command with error handling."""
-    print(f"Ì¥ß {description}...")
+    print(f"{description}...")
     try:
         result = subprocess.run(command, shell=True, check=True, capture_output=True, text=True)
         print(f"‚úÖ {description} completed")
@@ -76,7 +76,7 @@ def install_dependencies():
         return run_command("poetry install", "Installing dependencies with Poetry")
     
     # Fallback to pip
-    print("Ì≥¶ Poetry not found, using pip...")
+    print("Poetry not found, using pip...")
     requirements_file = "requirements/dev.txt" if Path("requirements/dev.txt").exists() else "requirements.txt"
     return run_command(f"pip install -r {requirements_file}", "Installing dependencies with pip")
 
@@ -94,7 +94,7 @@ def run_initial_tests():
 
 def main():
     """Main setup function."""
-    print("Ì∫Ä Setting up FastAPI LLM Application development environment")
+    print("Setting up FastAPI LLM Application development environment")
     
     # Check prerequisites
     check_python_version()
@@ -112,7 +112,7 @@ def main():
     setup_pre_commit()
     
     # Verify installation
-    print("\nÌ¥ç Verifying installation...")
+    print("\nVerifying installation...")
     
     try:
         import fastapi
@@ -126,13 +126,13 @@ def main():
     # Run tests
     run_initial_tests()
     
-    print("\nÌæâ Setup completed successfully!")
-    print("\nÌ≥ã Next steps:")
+    print("\nSetup completed successfully!")
+    print("\nNext steps:")
     print("   1. Review and update .env file if needed")
     print("   2. Start the development server: uvicorn app.main:app --reload")
     print("   3. Visit http://localhost:8000 to test the application")
     print("   4. Run tests: pytest")
-    print("\nÌ≥ö Documentation:")
+    print("\nDocumentation:")
     print("   - API docs: http://localhost:8000/api/docs")
     print("   - Health check: http://localhost:8000/health")
 
