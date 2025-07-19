@@ -79,9 +79,9 @@ poetry run uvicorn app.main:app --reload
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │    Frontend     │    │    Backend      │    │   Services      │
 │                 │    │                 │    │                 │
-│  HTMX + WebSocket ──▶│   FastAPI       │──▶ │   Ollama LLM    │
-│  Dynamic UI     │    │   Async Routes  │    │   Local Models  │
-│  Real-time Chat │    │   Authentication│    │                 │
+│ HTMX + WebSocket│ -> │   FastAPI       │ -> │   Ollama LLM    │
+│ Dynamic UI      │    │   Async Routes  │    │   Local Models  │
+│ Real-time Chat  │    │   Authentication│    │                 │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
          │                       │                       │
          │                       ▼                       ▼
@@ -246,13 +246,13 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4
 - Security tests for authentication
 
 This implementation provides a complete, production-ready SaaS LLM Web UI that follows modern best practices and is ready for deployment at scale.
-"""
 
-# =====================================================
+
+
 # DEPLOYMENT AND USAGE INSTRUCTIONS
-# =====================================================
 
-"""
+
+
 ## Installation and Setup
 
 ### Option 1: Poetry (Recommended for Development)
@@ -327,4 +327,3 @@ docker-compose up -d
 - **Scalable**: Designed for horizontal scaling with Redis and Docker
 - **Secure**: JWT authentication, input validation, and security headers
 - **Modern**: Uses latest versions and best practices for all technologies
-"""
